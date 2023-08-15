@@ -1,0 +1,31 @@
+@model Sample
+@{
+    ViewBag.Title = "Add Sample";
+    Layout = "_Layout";
+}
+
+<div class="row no-gutters">
+    <div class="col-auto mr-auto">
+        <h2>Add</h2>
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-link" asp-area="" asp-controller="Sample" asp-action="Index">Back to Samples</a>
+    </div>
+</div>
+
+@using (Html.BeginForm("Add", "Sample", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new {@class = "form-control", placeholder = "Title"})
+        @Html.ValidationMessageFor(x => x.Title, null, new {@class = "invalid-feedback d-block"})
+    </div>
+
+    <button class="btn btn-xs btn-primary" type="submit">Submit</button>
+}
+
+@section scripts{
+    <script src="~/bundles/js/jquery-val.js" asp-append-version="true"></script>
+}
